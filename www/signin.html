@@ -36,21 +36,22 @@
     </a>
 
     <form id="signInForm"
-          action="127.0.0.1/msincap/autenticar"
+          action="http://127.0.0.1:8080/sincap/m/autenticar"
           name="f"
           method="post">
         <div class="box">
             <div class="content-wrap">
                 <h6>Log in</h6>
-                <input class="form-control" type="text" placeholder="CPF">
-                <input class="form-control" type="password" placeholder="Senha">
+                <input id="username" class="form-control" type="text" placeholder="CPF">
+                <input id="password" class="form-control" type="password" placeholder="Senha">
                 <!--<a href="#" class="forgot">Forgot password?</a>-->
                 <!--<div class="remember">-->
                 <!--<input id="remember-me" type="checkbox">-->
                 <!--<label for="remember-me">Remember me</label>-->
                 <!--</div>-->
-                <input type="hidden" name="#{_csrf.parameterName}" value="#{_csrf.token}"/>
-                <a class="btn-glow primary login" href="index.html">Entrar</a>
+                <!--<input type="hidden" name="#{_csrf.parameterName}" value="#{_csrf.token}"/>-->
+                <button id="botaoLogin" type="submit"
+                        class="btn-glow primary login">Entrar</button>
             </div>
         </div>
     </form>
@@ -60,5 +61,40 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/theme.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(username).mask('000.000.000-00', {
+            reverse: true
+        });
+    });
+
+    //Validando os dados do formulario
+    $("#signInForm").validate({
+        rules: {
+            username: {
+                required: true,
+                minlength: 11
+            },
+            password: {
+                required: true,
+                minlength: 5
+            }
+        },
+        messages: {
+            username: {
+                required: "Por favor, entre com o CPF.",
+                minlength: "O CPF deve possuir 11 números."
+            },
+            password: {
+                required: "Por favor, entre com a senha.",
+                minlength: "A sua senha deve ter pelo menos 5 números."
+            }
+        },
+        submitHandler: function (form) {
+            form.submit();
+        }
+    });
+</script>
 </body>
 </html>
