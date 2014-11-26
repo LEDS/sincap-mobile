@@ -1,12 +1,39 @@
 'use strict';
 
-// Declare app level module which depends on views, and components
-angular.module('myApp', [
-  'ngRoute',
-  'myApp.view1',
-  'myApp.view2',
-  'myApp.version'
-]).
-config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/view1'});
-}]);
+(function() {
+    var app = angular.module('sincap', []);
+
+    app.controller('IndexController', function() {
+        this.menu = false;
+
+        this.isMenuSelected = function() {
+            return this.menu;
+        };
+
+        this.changeMenuSelected = function() {
+            this.menu = !this.menu;
+        };
+    });
+
+    app.directive('cabecalho', function() {
+        return {
+            restrict: 'E',
+            templateUrl: 'header.html'
+        };
+    });
+
+    app.directive('sidebar', function() {
+        return {
+            restrict: 'E',
+            templateUrl: 'sidebar.html'
+        };
+    });
+
+    app.directive('listaAguardandoCaptacoes', function() {
+        return {
+            restrict: 'E',
+            templateUrl: 'captacao/index.html'
+        };
+    });
+
+})();
