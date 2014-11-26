@@ -1,13 +1,13 @@
 <div id="sidebar-nav">
     <ul id="dashboard-menu">
-        <li>
-            <a href="#">
+        <li ng-class="{ active:index.isSidebarOptSelected('home') }">
+            <a href="#" ng-click="index.changeSidebarOpt('home')">
                 <i class="icon-home"></i>
                 <span>Principal</span>
             </a>
         </li>
-        <li>
-            <a href="#">
+        <li ng-class="{ active:index.isSidebarOptSelected('notificacao') }">
+            <a href="#" ng-click="index.changeSidebarOpt('notificacao')">
                 <i class="icon-pencil"></i>
                 <span>Notificar</span>
             </a>
