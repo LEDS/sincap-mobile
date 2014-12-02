@@ -3,7 +3,7 @@
     <!-- the script for the toggle all checkboxes from header is located in js/theme.js -->
     <div class="table-wrapper products-table section tabela-not">
         <div class="row">
-            <table class="table table-hover">
+            <table class="table table-hover" ng-controller="NotificacaoController as processoCtrl" >
                 <thead>
                     <tr>
                         <th class="col-md-3">
@@ -13,9 +13,9 @@
                 </thead>
                 <tbody>
                     <!-- row -->
-                    <tr class="first">
+                    <tr class="first" ng-repeat="processo in processoCtrl.listCaptacao">
                         <td class="description">
-                            if you are going to use a passage of Lorem Ipsum.
+                            {{processo.id}} if you are going to use a passage of Lorem Ipsum.
                         </td>
                     </tr>
                     <!-- row -->
