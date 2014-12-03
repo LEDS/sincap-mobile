@@ -1,49 +1,48 @@
 <div id="pad-wrapper" style="margin-top:0px">
     <!-- products table-->
     <!-- the script for the toggle all checkboxes from header is located in js/theme.js -->
+    <div class="grid-wrapper">
+        <div class="row-fluid head">
+            <ul>
+                <li>
+                    <a class="dropdown-toggle ui-elements" href="#">{{processo.codigo}} - {{processo.obito.paciente.nome}}</a>
+                    <div class="submenu"  style="display: none;">
+                        {{processo.codigo}}
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+<!--
+
     <div class="table-wrapper products-table section tabela-not">
         <div class="row">
+
             <table class="table table-hover" ng-controller="NotificacaoController as processoCtrl" >
                 <thead>
                     <tr>
                         <th class="col-md-3">
-                            <span class="line"></span>Description
+                            <span class="line"></span>Captações para serem realizadas
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- row -->
+                     row
                     <tr class="first" ng-repeat="processo in processoCtrl.listCaptacao">
                         <td class="description">
-                            {{processo.id}} if you are going to use a passage of Lorem Ipsum.
-                        </td>
-                    </tr>
-                    <!-- row -->
-                    <tr>
-                        <td class="description">
-                            There are many variations of passages.
-                        </td>
-                    </tr>
-                    <!-- row -->
-                    <tr>
-                        <td class="description">
-                            if you are going to use a passage of Lorem Ipsum.
-                        </td>
-                    </tr>
-                    <!-- row -->
-                    <tr>
-                        <td class="description">
-                            There are many variations of passages.
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="description">
-                            if you are going to use a passage of Lorem Ipsum.
+                            <a id="a_{{processo.codigo}}" ng-click="processo.mostraCaptacao(processo.codigo)"
+                               class="expander" href="#">{{processo.codigo}} - {{processo.obito.paciente.nome}}</a>
+                            <div id="div_{{processo.codigo}}" class="form" style="display: none">
+                                {{processo.codigo}}
+                            </div>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
+-->
     <!-- end products table -->
 </div>
