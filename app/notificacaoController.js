@@ -19,9 +19,7 @@
         }
 
         function mostraCaptacao(codigo) {
-//            $( "a_" + codigo ).click(function() {
-                $( "div_" + codigo ).toggle( "slow" );
-//            });
+                angular.element( "#div_" + codigo ).toggle( "slow" );
         }
     }
     
