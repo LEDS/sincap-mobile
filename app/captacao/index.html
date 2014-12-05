@@ -1,82 +1,63 @@
 <div id="pad-wrapper" style="margin-top:0px">
     <!-- products table-->
     <!-- the script for the toggle all checkboxes from header is located in js/theme.js -->
-    <div class="table-wrapper products-table section tabela-not">
-        <div class="row">
-
-            <table class="table table-hover" ng-controller="NotificacaoController as processoCtrl">
-                <thead>
-                <tr>
-                    <th class="col-md-3">
-                        <span class="line"></span>Captações para serem realizadas
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="first even"  ng-repeat="processo in processoCtrl.listCaptacao">
-                    <td class="description sorting_1">
+    <div class="container-fluid">
+        <div id="pad-wrapper" class="form-page" ng-controller="NotificacaoController as processoCtrl">
+            <div class="row-fluid form-wrapper">
+                <!-- left column -->
+                <div class="span8 column field-box">
+                    <form ng-repeat="processo in processoCtrl.listCaptacao">
                         <a id="a_{{processo.codigo}}" ng-click="processoCtrl.mostraCaptacao(processo.codigo)"
                            class="expander" href="#">{{processo.codigo}} - {{processo.obito.paciente.nome}}</a>
-
-                        <div id="div_{{processo.codigo}}" class="form">
-                            <form>
-                                <div class="field-box">
-                                    <label> Córneas captadas:*</label>
-
-                                    <div class="span8">
-                                        <label class="radio">
-                                            <div id="uniform-captacaoRealizada:0" class="radio">
-                                                <span class="checked">
-                                                    <input id="captacaoRealizada:0" type="radio" checked="true"
-                                                           value="true" name="captacaoRealizada">
-                                                </span>
-                                            </div>
-                                            Sim
-                                        </label>
-                                        <label class="radio">
-                                            <div id="uniform-captacaoRealizada:1" class="radio">
-                                                <span>
-                                                    <input id="captacaoRealizada:1" type="radio" value="false"
-                                                           name="captacaoRealizada">
-                                                </span>
-                                            </div>
-                                            Não
-                                        </label>
-                                    </div>
-                                </div>
-                                <div id="divCorneasNaoCaptadas" class="field-box" style="display: block;">
-                                    <label> Aspecto Logístico*</label>
-
-                                    <div class="ui-select span5">
-                                        <select id="causaNaoDoacao" size="1" name="causaNaoDoacao">
-                                            <option selected="selected" value="">-- Selecione --</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div id="divCorneasCaptadas" class="field-box" style="display: block;">
-                                    <div class="field-box">
-                                        <label> Data da captação*</label>
-                                        <input id="dataCaptacao" class="data span8" type="text" name="dataCaptacao">
-                                    </div>
-                                    <div class="field-box">
-                                        <label> Hora da captação*</label>
-                                        <input id="horarioCaptacao" class="hora span8" type="text"
-                                               name="horarioCaptacao">
-                                    </div>
-                                </div>
-                                <div class="field-box">
-                                    <label> Comentários:</label>
-                                    <textarea id="captacao-comentario" class="span8" rows="5"
-                                              name="captacao.comentario"></textarea>
-                                </div>
-                                <button class="btn-glow success btn-finish" type="button" style="display: inline-block;"> Finalizar </button>
-                            </form>
+                        
+                        <div class="field-box">
+                            <label> Córneas captadas:*</label>
+                            <div class="span8">
+                                <label class="radio">
+                                    <input id="captacaoRealizada:0" type="radio" checked="true" value="true" name="captacaoRealizada">
+                                    Sim
+                                </label>
+                                <label class="radio">
+                                    <input id="captacaoRealizada:1" type="radio" value="false" name="captacaoRealizada">
+                                    Não
+                                </label>
+                            </div>                
                         </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+                        
+                        <div id="divCorneasNaoCaptadas" class="field-box" style="display: block;">
+                            <label> Aspecto Logístico*</label>
+
+                            <div class="ui-select span5">
+                                <select id="causaNaoDoacao" size="1" name="causaNaoDoacao">
+                                    <option selected="selected" value="">-- Selecione --</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div id="divCorneasCaptadas" class="field-box" style="display: block;">
+                            <div class="field-box">
+                                <label> Data da captação*</label>
+                                <input id="dataCaptacao" class="data span8 inline-input" type="text" name="dataCaptacao">
+                            </div>
+                            <div class="field-box">
+                                <label> Hora da captação*</label>
+                                <input id="horarioCaptacao" class="hora span8 inline-input" type="text"
+                                       name="horarioCaptacao">
+                            </div>
+                        </div>
+                        
+                        <div class="field-box">
+                            <label> Comentários:</label>
+                            <textarea id="captacao-comentario" class="span10 wysihtml5" rows="5"
+                                      name="captacao.comentario"></textarea>
+                        </div>
+                        
+                        <input type="hidden" id="id" name="id" value="{{processo.id}}"/>
+
+                        <button class="btn-glow success btn-finish" type="button" style="display: inline-block;"> Finalizar </button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-    <!-- end products table -->
 </div>
