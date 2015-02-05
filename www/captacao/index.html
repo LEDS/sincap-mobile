@@ -6,7 +6,9 @@
             <div class="row-fluid form-wrapper">
                 <!-- left column -->
                 <div class="span8 column field-box" ng-controller="NotificacaoController as processoCtrl">
-                    <form ng-repeat="processo in processoCtrl.listCaptacao" 
+                    <form ng-repeat="processo in processoCtrl.listCaptacao" class="span8"
+                          action="http://172.16.109.68:8080/msincap/captacao/salvar"
+                          method="post">
                         <a id="a_{{processo.codigo}}" ng-click="processoCtrl.mostraCaptacao(processo.codigo)"
                            class="expander" href="#">{{processo.codigo}} - {{processo.obito.paciente.nome}}</a>
                         
@@ -56,7 +58,7 @@
 
                         <div class="field-box">
                             <input type="hidden" id="id" name="id" value="{{processo.id}}"/>
-                            <button class="btn-glow success btn-finish" type="button" style="display: inline-block;"> Finalizar </button>
+                            <button class="btn-glow success btn-finish" type="submit" style="display: inline-block;"> Finalizar </button>
                         </div>
                     </form>
                 </div>
