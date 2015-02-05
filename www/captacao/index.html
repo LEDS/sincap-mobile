@@ -6,7 +6,7 @@
             <div class="row-fluid form-wrapper">
                 <!-- left column -->
                 <div class="span8 column field-box" ng-controller="NotificacaoController as processoCtrl">
-                    <form ng-repeat="processo in processoCtrl.listCaptacao">
+                    <form ng-repeat="processo in processoCtrl.listCaptacao" 
                         <a id="a_{{processo.codigo}}" ng-click="processoCtrl.mostraCaptacao(processo.codigo)"
                            class="expander" href="#">{{processo.codigo}} - {{processo.obito.paciente.nome}}</a>
                         
@@ -30,6 +30,8 @@
                             <div class="ui-select span5">
                                 <select id="causaNaoDoacao" size="1" name="causaNaoDoacao">
                                     <option selected="selected" value="">-- Selecione --</option>
+                                    <option ng-repeat="aspecLogistico in processoCtrl.listAspectosLogisticos" 
+                                            value="{{aspecLogistico.id}}">{{aspecLogistico.nome}}</option>
                                 </select>
                             </div>
                         </div>

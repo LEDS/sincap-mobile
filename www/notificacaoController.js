@@ -7,14 +7,22 @@
         var notificacaoCtrl = this;
         
         notificacaoCtrl.listCaptacao = [];
+        notificacaoCtrl.listAspectosLogisticos = [];
         notificacaoCtrl.getListCaptacao = getListCaptacao;
         notificacaoCtrl.mostraCaptacao = mostraCaptacao;
         
         getListCaptacao();
+        getListApectosLogisticos()
         
         function getListCaptacao() {
-           $http.get("http://172.16.109.80:8080/msincap/index").success(function(data) {
+           $http.get("http://172.16.109.68:8080/msincap/captacao/getCaptacoes").success(function(data) {
                notificacaoCtrl.listCaptacao = data;
+           });
+        }
+        
+        function getListApectosLogisticos() {
+            $http.get("http://172.16.109.68:8080/msincap/captacao/getAspectosLogisticos").success(function(data) {
+               notificacaoCtrl.listAspectosLogisticos = data;
            });
         }
 
