@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html ng-app="sincap">
+<head>
+	<title>Sincap</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- bootstrap -->
+    <link href="css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="css/bootstrap/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
+
+    <!-- libraries -->
+    <link href="css/lib/bootstrap-wysihtml5.css" type="text/css" rel="stylesheet" />
+    <link href="css/lib/uniform.default.css" type="text/css" rel="stylesheet" />
+    <link href="css/lib/select2.css" type="text/css" rel="stylesheet" />
+    <link href="css/lib/bootstrap.datepicker.css" type="text/css" rel="stylesheet" />
+    <link href="css/lib/font-awesome.css" type="text/css" rel="stylesheet" />
+
+    <!-- global styles -->
+    <link rel="stylesheet" type="text/css" href="css/compiled/layout.css" />
+    <link rel="stylesheet" type="text/css" href="css/compiled/elements.css" />
+    <link rel="stylesheet" type="text/css" href="css/compiled/icons.css" />
+
+    <!-- CSS Index -->
+    <link rel="stylesheet" href="css/compiled/index.css" type="text/css" media="screen" />
+
+    <!-- Para tabelas -->
+    <link rel="stylesheet" href="css/compiled/tables.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/sincap.css" type="text/css" media="screen" />
+
+    <!-- open sans font -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css' />
+
+    <!-- lato font -->
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css' />
+
+    <!-- Forms -->
+    <link rel="stylesheet" href="css/compiled/form-showcase.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/compiled/form-wizard.css" type="text/css" media="screen" />
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script type="application/javascript" src="bower_components/angular/angular.min.js"></script>
+
+    <script type="application/javascript" src="app.js"></script>
+    <script type="application/javascript" src="notificacaoController.js"></script>
+
+</head>
+<body ng-controller="IndexController as index" ng-class="{ menu:index.isMenuSelected() }">
+    <cabecalho></cabecalho>
+    <sidebar></sidebar>
+    <div class="content">
+        <lista-aguardando-captacoes></lista-aguardando-captacoes>
+    </div>
+
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/fuelux.wizard.js"></script>
+    <script src="js/jquery.inputmask.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.data').inputmask("dd/mm/yyyy", {placeholder: "_"});
+            $('.hora').inputmask('hh:mm');
+        });
+    </script>
+</body>
+</html>
