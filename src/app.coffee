@@ -17,7 +17,7 @@ angular.module 'sincap', ['ionic', 'sincap.controllers']
 
   .state 'app.search',
     url: "/search"
-    views: 
+    views:
       'menuContent':
         templateUrl: "templates/search.html"
 

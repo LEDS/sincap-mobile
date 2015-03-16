@@ -8,6 +8,7 @@ var rename = require('gulp-rename');
 var sh = require('shelljs');
 var coffee = require('gulp-coffee');
 var coffeelint = require('gulp-coffeelint');
+var plumber = require('gulp-plumber');
 
 var paths = {
   sass: ['./scss/**/*.scss'],
@@ -18,12 +19,13 @@ gulp.task('default', ['sass', 'coffee']);
 
 gulp.task('lint', function () {
     gulp.src('./src/**/*.coffee')
-        .pipe(coffeelint())
+        .pipe(coffeelint('coffeelint.json'))
         .pipe(coffeelint.reporter())
 });
 
 gulp.task('coffee', ['lint'], function () {
   return gulp.src('./src/**/*.coffee')
+    .pipe(plumber())
     .pipe(coffee())
     .pipe(gulp.dest('./www/js'));
 });
