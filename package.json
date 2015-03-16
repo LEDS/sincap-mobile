@@ -15,5 +15,6 @@
     "gulp-util": "^2.2.14",
     "shelljs": "^0.3.0",
     "gulp-coffeelint": "~0.4.0"
-  }
+  },
+  "cordovaPlugins": []
 }

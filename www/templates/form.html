@@ -1,16 +1,44 @@
-<ion-view view-title="Playlist">
+<ion-view view-title="Notificação">
   <ion-content>
-    <h1>Playlist</h1>
 	<div class="list">
-		<label class="item item-input">
-			<input type="text" placeholder="First Name">
+		<label class="item item-input item-stacked-label">
+		    <span class="input-label">Nome</span>
+			<input type="text" readonly="true" placeholder="">
 		</label>
-		<label class="item item-input">
-			<input type="text" placeholder="Last Name">
+		<label class="item item-input item-stacked-label">
+			<span class="input-label">Protocolo</span>
+			<input type="text" readonly="true" placeholder="">
 		</label>
-		<label class="item item-input">
-			<textarea placeholder="Comments"></textarea>
+
+		<label class="item">
+		Córneas captadas:*
+			<ul class="list">
+				<label class="item item-radio ">
+					<input type="radio" name="group">
+					<div class="item-content">Sim</div>
+					<i class="radio-icon ion-checkmark"></i>
+				</label>
+				<label class="item item-radio">
+					<input type="radio" name="group">
+					<div class="item-content">Não</div>
+					<i class="radio-icon ion-checkmark"></i>
+				</label>
+			</ul>
+		</label>
+
+		<label class="item item-input item-stacked-label">
+			<span class="input-label">Data da captação*</span>
+			<input type="date">
+		</label>
+		<label class="item item-input item-stacked-label">
+			<span class="date close-right">Hora da captação*</span>
+			<input type="text" placeholder="">
+		</label>
+		<label class="item item-input item-stacked-label">
+			<span class="input-label">Comments</span>
+			<textarea placeholder=""></textarea>
 		</label>
 	</div>
   </ion-content>
 </ion-view>
+
