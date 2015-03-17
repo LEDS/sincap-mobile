@@ -26,7 +26,7 @@
       views: {
         'menuContent': {
           templateUrl: "templates/captacao.html",
-          controller: 'PlaylistCtrl'
+          controller: 'CaptacaoCtrl'
         }
       }
     }).state('app.single', {
@@ -34,7 +34,7 @@
       views: {
         'menuContent': {
           templateUrl: "templates/form.html",
-          controller: 'PlaylistCtrl'
+          controller: 'CaptacaoCtrl'
         }
       }
     });

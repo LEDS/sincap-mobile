@@ -26,13 +26,13 @@ angular.module 'sincap', ['ionic', 'sincap.controllers']
     views:
       'menuContent':
         templateUrl: "templates/captacao.html"
-        controller: 'PlaylistCtrl'
+        controller: 'CaptacaoCtrl'
   
   .state 'app.single',
     url: "/captacoes/:processoId"
     views:
       'menuContent':
         templateUrl: "templates/form.html"
-        controller: 'PlaylistCtrl'
+        controller: 'CaptacaoCtrl'
 
   $urlRouterProvider.otherwise '/app/captacoes'

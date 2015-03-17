@@ -1,5 +1,5 @@
 (function() {
-  var AppController, LoginController, PlaylistsController;
+  var AppController, CaptacaoController, LoginController;
 
   LoginController = (function() {
     function LoginController($scope1, $ionicModal, $timeout) {
@@ -44,34 +44,14 @@
 
   })();
 
-  PlaylistsController = (function() {
-    function PlaylistsController($scope1) {
+  CaptacaoController = (function() {
+    function CaptacaoController($scope1) {
       this.$scope = $scope1;
-      this.$scope.playlists = [
-        {
-          title: 'Reggae',
-          id: 1
-        }, {
-          title: 'Chill',
-          id: 2
-        }, {
-          title: 'Dubstep',
-          id: 3
-        }, {
-          title: 'Indie',
-          id: 4
-        }, {
-          title: 'Rap',
-          id: 5
-        }, {
-          title: 'Cowbell',
-          id: 6
-        }
-      ];
+      this.$scope.processos = dataJson;
       this.$scope.title = 'Captações';
     }
 
-    return PlaylistsController;
+    return CaptacaoController;
 
   })();
 
@@ -81,6 +61,6 @@
 
   angular.module('sincap').controller('AppCtrl', ['$scope', AppController]);
 
-  angular.module('sincap').controller('PlaylistCtrl', ['$scope', PlaylistsController]);
+  angular.module('sincap').controller('CaptacaoCtrl', ['$scope', CaptacaoController]);
 
 }).call(this);

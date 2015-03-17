@@ -23,20 +23,13 @@ class AppController
   constructor: (@$scope, @$ionicModal, @$timeout) ->
   
 
-class PlaylistsController
+class CaptacaoController
   constructor: (@$scope) ->
-    @$scope.playlists = [
-      { title: 'Reggae', id: 1 }
-      { title: 'Chill', id: 2 }
-      { title: 'Dubstep', id: 3 }
-      { title: 'Indie', id: 4 }
-      { title: 'Rap', id: 5 }
-      { title: 'Cowbell', id: 6 }
-    ]
+    @$scope.processos = dataJson
 
     @$scope.title = 'Captações'
 
 angular.module 'sincap.controllers', []
 angular.module('sincap').controller 'LoginCtrl', ['$scope', LoginController]
 angular.module('sincap').controller 'AppCtrl', ['$scope', AppController]
-angular.module('sincap').controller 'PlaylistCtrl', ['$scope', PlaylistsController]
+angular.module('sincap').controller 'CaptacaoCtrl', ['$scope', CaptacaoController]
