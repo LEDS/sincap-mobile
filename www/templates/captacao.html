@@ -2,7 +2,9 @@
   <ion-content>
     <ion-list>
       <ion-item ng-repeat="p in processos" href="#/app/captacoes/{{p.id}}">
-        {{ p.id }}
+        <h2>Prontuário: {{ p.obito.paciente.numeroProntuario }}</h2>
+        <p>Nome: {{ p.obito.paciente.nome }}</p>
+        <p>Hospital: {{ p.obito.hospital.nome }}</p>
       </ion-item>
     </ion-list>
   </ion-content>
