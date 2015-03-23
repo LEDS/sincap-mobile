@@ -721,8 +721,8 @@ CaptacaoController = (function() {
   function CaptacaoController($scope, captacaoService) {
     this.$scope = $scope;
     this.captacaoService = captacaoService;
-    this.$scope.processos = window.dataJson;
-    this.$scope.processos2 = this.captacaoService.get();
+    this.$scope.processos2 = window.dataJson;
+    this.$scope.processos = this.captacaoService.get();
     this.$scope.title = 'Captações';
   }
 
@@ -775,13 +775,12 @@ CaptacaoService = (function() {
 
   urlBase = 'http://127.0.0.1:8080/msincap/captacao?bancoolhos.id=2';
 
-  function CaptacaoService($scope, $http) {
-    this.$scope = $scope;
+  function CaptacaoService($http) {
     this.$http = $http;
   }
 
   CaptacaoService.prototype.get = function() {
-    return this.$http.get(urlBase).success(function(results) {
+    return this.$http.get(urlBase).then(function(results) {
       return results.data;
     });
   };
@@ -790,4 +789,4 @@ CaptacaoService = (function() {
 
 })();
 
-angular.module('sincap').service('CaptacaoService', ['$scope', '$http', CaptacaoService]);
+angular.module('sincap').service('CaptacaoService', ['$http', CaptacaoService]);

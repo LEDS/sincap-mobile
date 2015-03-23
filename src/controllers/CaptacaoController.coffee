@@ -1,7 +1,7 @@
 class CaptacaoController
   constructor: (@$scope, @captacaoService) ->
-    @$scope.processos = window.dataJson
-    @$scope.processos2 = @captacaoService.get()
+    @$scope.processos2 = window.dataJson
+    @$scope.processos = @captacaoService.get()
 
     @$scope.title = 'Captações'
 

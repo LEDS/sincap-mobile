@@ -1,12 +1,10 @@
 class CaptacaoService
     urlBase = 'http://127.0.0.1:8080/msincap/captacao?bancoolhos.id=2'
 
-    constructor: (@$scope, @$http) ->
-
-        
+    constructor: (@$http) ->
     get: ->
         @$http.get(urlBase)
-        .success (results) ->
+        .then (results) ->
             results.data
 
 #    getPerson: (id) ->
@@ -19,4 +17,4 @@ class CaptacaoService
 #        .error (results, status) ->
 #            {results, status}
 
-angular.module('sincap').service 'CaptacaoService', ['$scope', '$http', CaptacaoService]
+angular.module('sincap').service 'CaptacaoService', ['$http', CaptacaoService]
