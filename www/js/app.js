@@ -696,6 +696,14 @@ angular.module('sincap').config(function($stateProvider, $urlRouterProvider) {
         controller: 'CaptacaoCtrl'
       }
     }
+  }).state('app.login', {
+    url: "/login",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/login.html",
+        controller: 'LoginCtrl'
+      }
+    }
   });
   return $urlRouterProvider.otherwise('/app/login');
 });
@@ -721,7 +729,6 @@ CaptacaoController = (function() {
   function CaptacaoController($scope, captacaoService) {
     this.$scope = $scope;
     this.captacaoService = captacaoService;
-    this.$scope.processos2 = window.dataJson;
     this.captacaoService.get().then((function(_this) {
       return function(results) {
         return _this.$scope.processos = results;
@@ -739,38 +746,20 @@ angular.module('sincap').controller('CaptacaoCtrl', ['$scope', 'CaptacaoService'
 var LoginController;
 
 LoginController = (function() {
-  function LoginController($scope1, $ionicModal, $timeout) {
-    this.$scope = $scope1;
-    this.$ionicModal = $ionicModal;
-    this.$timeout = $timeout;
-    this.$scope.loginData = {};
-    this.$ionicModal.fromTemplateUrl('templates/login.html', {
-      scope: $scope
-    }).then(function(modal) {
-      return $scope.modal = modal;
-    });
+  function LoginController($scope, loginService) {
+    this.$scope = $scope;
+    this.loginService = loginService;
   }
 
-  LoginController.prototype.closeLogin = function() {
-    return this.$scope.modal.hide();
-  };
-
   LoginController.prototype.login = function() {
-    return this.$scope.modal.show();
-  };
-
-  LoginController.prototype.doLogin = function() {
-    console.log('Doing login', this.$scope.loginData);
-    return this.$timeout(function() {
-      return this.$scope.closeLogin();
-    }, 1000);
+    return this.loginService.tryLogin(this.$scope.data);
   };
 
   return LoginController;
 
 })();
 
-angular.module('sincap').controller('LoginCtrl', ['$scope', LoginController]);
+angular.module('sincap').controller('LoginCtrl', ['$scope', 'LoginService', LoginController]);
 
 var CaptacaoService;
 
@@ -794,3 +783,27 @@ CaptacaoService = (function() {
 })();
 
 angular.module('sincap').service('CaptacaoService', ['$http', CaptacaoService]);
+
+var LoginService;
+
+LoginService = (function() {
+  var urlBase;
+
+  urlBase = 'http://127.0.0.1:8080/msincap/api/login';
+
+  function LoginService($http) {
+    this.$http = $http;
+    ({
+      tryLogin: function(dataLogin) {
+        return this.$http.post("" + urlBase, dataLogin).then(function(results) {
+          return results.data;
+        });
+      }
+    });
+  }
+
+  angular.module('sincap').service('LoginService', ['$http', CaptacaoService]);
+
+  return LoginService;
+
+})();

@@ -26,5 +26,12 @@ angular.module 'sincap'
       'menuContent':
         templateUrl: "templates/form.html"
         controller: 'CaptacaoCtrl'
+        
+  .state 'app.login',
+    url: "/login"
+    views:
+      'menuContent':
+        templateUrl: "templates/login.html"
+        controller: 'LoginCtrl'
 
-  $urlRouterProvider.otherwise '/app/captacoes'
+  $urlRouterProvider.otherwise '/app/login'

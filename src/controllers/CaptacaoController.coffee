@@ -1,6 +1,6 @@
 class CaptacaoController
   constructor: (@$scope, @captacaoService) ->
-    @$scope.processos2 = window.dataJson
+#    @$scope.processos2 = window.dataJson
     @captacaoService.get().then (results) =>
       @$scope.processos = results
 
