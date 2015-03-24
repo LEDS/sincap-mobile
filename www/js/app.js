@@ -697,7 +697,7 @@ angular.module('sincap').config(function($stateProvider, $urlRouterProvider) {
       }
     }
   });
-  return $urlRouterProvider.otherwise('/app/captacoes');
+  return $urlRouterProvider.otherwise('/app/login');
 });
 
 var AppController;
@@ -722,7 +722,11 @@ CaptacaoController = (function() {
     this.$scope = $scope;
     this.captacaoService = captacaoService;
     this.$scope.processos2 = window.dataJson;
-    this.$scope.processos = this.captacaoService.get();
+    this.captacaoService.get().then((function(_this) {
+      return function(results) {
+        return _this.$scope.processos = results;
+      };
+    })(this));
     this.$scope.title = 'Captações';
   }
 

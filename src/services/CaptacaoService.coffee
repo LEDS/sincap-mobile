@@ -1,11 +1,11 @@
 class CaptacaoService
-    urlBase = 'http://127.0.0.1:8080/msincap/captacao?bancoolhos.id=2'
+  urlBase = 'http://127.0.0.1:8080/msincap/captacao?bancoolhos.id=2'
 
-    constructor: (@$http) ->
-    get: ->
-        @$http.get(urlBase)
-        .then (results) ->
-            results.data
+  constructor: (@$http) ->
+  get: ->
+    @$http.get(urlBase)
+    .then (results) ->
+      results.data
 
 #    getPerson: (id) ->
 #        @$http.get("#{urlBase}/#{id}")
