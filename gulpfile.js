@@ -17,9 +17,9 @@ var paths = {
 gulp.task('default', ['sass', 'coffee']);
 
 gulp.task('lint', function () {
-    gulp.src('./src/**/*.coffee')
-        .pipe(coffeelint('coffeelint.json'))
-        .pipe(coffeelint.reporter())
+  return gulp.src('./src/**/*.coffee')
+    .pipe(coffeelint('coffeelint.json'))
+    .pipe(coffeelint.reporter())
 });
 
 gulp.task('coffee', ['lint'], function () {
