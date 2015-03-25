@@ -4,7 +4,7 @@ class LoginController
   login: ->
     @loginService.tryLogin(@$scope.data)
 
-    
+
 #    @$scope.loginData = {}
 #
 #    @$ionicModal.fromTemplateUrl('templates/login.html', scope: $scope)
