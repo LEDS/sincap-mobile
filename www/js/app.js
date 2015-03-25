@@ -789,21 +789,25 @@ var LoginService;
 LoginService = (function() {
   var urlBase;
 
+  function LoginService() {}
+
   urlBase = 'http://127.0.0.1:8080/msincap/api/login';
 
-  function LoginService($http) {
+  return LoginService;
+
+})();
+
+({
+  constructor: function($http) {
     this.$http = $http;
-    ({
+    return {
       tryLogin: function(dataLogin) {
         return this.$http.post("" + urlBase, dataLogin).then(function(results) {
           return results.data;
         });
       }
-    });
+    };
   }
+});
 
-  angular.module('sincap').service('LoginService', ['$http', CaptacaoService]);
-
-  return LoginService;
-
-})();
+angular.module('sincap').service('LoginService', ['$http', LoginService]);
