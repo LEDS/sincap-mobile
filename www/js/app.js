@@ -749,11 +749,10 @@ LoginController = (function() {
   function LoginController($scope, loginService) {
     this.$scope = $scope;
     this.loginService = loginService;
+    this.$scope.login = function() {
+      return this.loginService.tryLogin(this.$scope.data);
+    };
   }
-
-  LoginController.prototype.login = function() {
-    return this.loginService.tryLogin(this.$scope.data);
-  };
 
   return LoginController;
 
@@ -793,7 +792,6 @@ LoginService = (function() {
 
   function LoginService($http) {
     this.$http = $http;
-    7;
   }
 
   LoginService.prototype.tryLogin = function(dataLogin) {
@@ -802,8 +800,8 @@ LoginService = (function() {
     });
   };
 
-  angular.module('sincap').service('LoginService', ['$http', LoginService]);
-
   return LoginService;
 
 })();
+
+angular.module('sincap').service('LoginService', ['$http', LoginService]);
