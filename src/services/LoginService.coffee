@@ -3,8 +3,8 @@ class LoginService
 
   constructor: (@$http) ->
 
-  tryLogin: (dataLogin) ->
-    @$http.post("#{urlBase}", dataLogin)
+  tryLogin: (data) ->
+    @$http.post("#{urlBase}", data)
     .then (results) ->
       results.data
 

@@ -749,9 +749,13 @@ LoginController = (function() {
   function LoginController($scope, loginService) {
     this.$scope = $scope;
     this.loginService = loginService;
-    this.$scope.login = function() {
-      return this.loginService.tryLogin(this.$scope.data);
-    };
+    this.$scope.login = (function(_this) {
+      return function() {
+        return _this.loginService.tryLogin(_this.$scope.data).then(function(results) {
+          return alert(results);
+        });
+      };
+    })(this);
   }
 
   return LoginController;
@@ -794,8 +798,8 @@ LoginService = (function() {
     this.$http = $http;
   }
 
-  LoginService.prototype.tryLogin = function(dataLogin) {
-    return this.$http.post("" + urlBase, dataLogin).then(function(results) {
+  LoginService.prototype.tryLogin = function(data) {
+    return this.$http.post("" + urlBase, data).then(function(results) {
       return results.data;
     });
   };
