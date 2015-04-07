@@ -750,8 +750,8 @@ LoginController = (function() {
     this.$scope = $scope;
     this.loginService = loginService;
     this.$scope.login = (function(_this) {
-      return function() {
-        return _this.loginService.tryLogin(_this.$scope.data).then(function(results) {
+      return function(dados) {
+        return _this.loginService.tryLogin(dados).then(function(results) {
           return alert(results);
         });
       };

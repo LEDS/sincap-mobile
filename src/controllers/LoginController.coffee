@@ -1,8 +1,8 @@
 class LoginController
   constructor: (@$scope, @loginService) ->
 
-    @$scope.login = =>
-      @loginService.tryLogin(@$scope.data).then (results) ->
+    @$scope.login = (dados) =>
+      @loginService.tryLogin(dados).then (results) ->
         alert(results)
 #    @$scope.loginData = {}
 #
