@@ -1,4 +1,4 @@
 class AppController
-  constructor: (@$scope, @$ionicModal, @$timeout) ->
+  constructor: (@$scope, @$auth) ->
 
 angular.module('sincap').controller 'AppCtrl', ['$scope', AppController]

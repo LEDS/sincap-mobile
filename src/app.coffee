@@ -1,5 +1,9 @@
 angular.module 'sincap', ['ionic']
 
+.config(($httpProvider) ->
+  $httpProvider.interceptors.push('TokenAuthInterceptor')
+)
+
 .run ($ionicPlatform) ->
   $ionicPlatform.ready ->
     if window.cordova and window.cordova.plugins.Keyboard

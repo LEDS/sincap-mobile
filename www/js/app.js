@@ -1,4 +1,6 @@
-angular.module('sincap', ['ionic']).run(function($ionicPlatform) {
+angular.module('sincap', ['ionic']).config(function($httpProvider) {
+  return $httpProvider.interceptors.push('TokenAuthInterceptor');
+}).run(function($ionicPlatform) {
   return $ionicPlatform.ready(function() {
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -711,10 +713,9 @@ angular.module('sincap').config(function($stateProvider, $urlRouterProvider) {
 var AppController;
 
 AppController = (function() {
-  function AppController($scope, $ionicModal, $timeout) {
+  function AppController($scope, $auth) {
     this.$scope = $scope;
-    this.$ionicModal = $ionicModal;
-    this.$timeout = $timeout;
+    this.$auth = $auth;
   }
 
   return AppController;
@@ -751,9 +752,7 @@ LoginController = (function() {
     this.loginService = loginService;
     this.$scope.login = (function(_this) {
       return function(dados) {
-        return _this.loginService.tryLogin(dados).then(function(results) {
-          return alert(results);
-        });
+        return _this.loginService.login(dados).success(function(results) {});
       };
     })(this);
   }
@@ -763,6 +762,49 @@ LoginController = (function() {
 })();
 
 angular.module('sincap').controller('LoginCtrl', ['$scope', 'LoginService', LoginController]);
+
+var TokenAuthInterceptor;
+
+TokenAuthInterceptor = function($q, TokenStorage) {
+  return {
+    request: function(config) {
+      var authToken;
+      authToken = TokenStorage.retrieve();
+      if (authToken) {
+        config.headers['X-AUTH-TOKEN'] = authToken;
+      }
+      return config;
+    },
+    responseError: function(error) {
+      if (error.status === 401 || error.status === 403) {
+        TokenStorage.clear();
+      }
+      return $q.reject(error);
+    }
+  };
+};
+
+angular.module('sincap').factory('TokenAuthInterceptor', ['$q', 'TokenStorage', TokenAuthInterceptor]);
+
+var TokenStorage;
+
+TokenStorage = function() {
+  var storageKey;
+  storageKey = 'auth_token';
+  return {
+    store: function(token) {
+      return localStorage.setItem(storageKey, token);
+    },
+    retrieve: function() {
+      return localStorage.getItem(storageKey);
+    },
+    clear: function() {
+      return localStorage.removeItem(storageKey);
+    }
+  };
+};
+
+angular.module('sincap').factory('TokenStorage', [TokenStorage]);
 
 var CaptacaoService;
 
@@ -794,13 +836,19 @@ LoginService = (function() {
 
   urlBase = 'http://127.0.0.1:8080/msincap/api/login';
 
-  function LoginService($http) {
+  function LoginService($http, TokenStorage1) {
     this.$http = $http;
+    this.TokenStorage = TokenStorage1;
   }
 
-  LoginService.prototype.tryLogin = function(data) {
-    return this.$http.post("" + urlBase, data).then(function(results) {
-      return results.data;
+  LoginService.prototype.login = function(data) {
+    return this.$http.post("" + urlBase, data).success(function(result, status, headers) {
+      data.autenticado = true;
+      data.token = headers('X-AUTH-TOKEN');
+      TokenStorage.store(headers('X-AUTH-TOKEN'));
+      data.headers = headers();
+      console.log(headers());
+      return data;
     });
   };
 
@@ -808,4 +856,4 @@ LoginService = (function() {
 
 })();
 
-angular.module('sincap').service('LoginService', ['$http', LoginService]);
+angular.module('sincap').service('LoginService', ['$http', 'TokenStorage', LoginService]);

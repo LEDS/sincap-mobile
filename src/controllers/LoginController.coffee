@@ -2,8 +2,8 @@ class LoginController
   constructor: (@$scope, @loginService) ->
 
     @$scope.login = (dados) =>
-      @loginService.tryLogin(dados).then (results) ->
-        alert(results)
+      @loginService.login(dados).success (results) ->
+#        alert(results)
 #    @$scope.loginData = {}
 #
 #    @$ionicModal.fromTemplateUrl('templates/login.html', scope: $scope)
