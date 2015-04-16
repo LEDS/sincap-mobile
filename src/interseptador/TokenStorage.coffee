@@ -1,15 +1,15 @@
 TokenStorage = () ->
-  storageKey = 'auth_token'
+  storageKey = ''
   
   {
-    store: (token) ->
-      localStorage.setItem(storageKey, token)
+  store: (token) ->
+    localStorage.setItem(storageKey, token)
 
-    retrieve: () ->
-      localStorage.getItem(storageKey)
+  retrieve: () ->
+    localStorage.getItem(storageKey)
 
-    clear : () ->
-      localStorage.removeItem(storageKey)
+  clear : () ->
+    localStorage.removeItem(storageKey)
   }
   
 

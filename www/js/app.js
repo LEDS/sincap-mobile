@@ -790,7 +790,7 @@ var TokenStorage;
 
 TokenStorage = function() {
   var storageKey;
-  storageKey = 'auth_token';
+  storageKey = '';
   return {
     store: function(token) {
       return localStorage.setItem(storageKey, token);
@@ -829,23 +829,27 @@ CaptacaoService = (function() {
 
 angular.module('sincap').service('CaptacaoService', ['$http', CaptacaoService]);
 
-var LoginService;
+var LoginService,
+  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
 LoginService = (function() {
   var urlBase;
 
   urlBase = 'http://127.0.0.1:8080/msincap/api/login';
 
-  function LoginService($http, TokenStorage1) {
+  function LoginService($http, TokenStorage) {
     this.$http = $http;
-    this.TokenStorage = TokenStorage1;
+    this.TokenStorage = TokenStorage;
+    this.login = bind(this.login, this);
   }
 
   LoginService.prototype.login = function(data) {
-    return this.$http.post("" + urlBase, data).success(function(result) {
-      TokenStorage.store(result);
-      return TokenStorage;
-    });
+    return this.$http.post("" + urlBase, data).success((function(_this) {
+      return function(result) {
+        _this.TokenStorage.store(result);
+        return _this.TokenStorage;
+      };
+    })(this));
   };
 
   return LoginService;
