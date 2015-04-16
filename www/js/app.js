@@ -842,13 +842,9 @@ LoginService = (function() {
   }
 
   LoginService.prototype.login = function(data) {
-    return this.$http.post("" + urlBase, data).success(function(result, status, headers) {
-      data.autenticado = true;
-      data.token = headers('X-AUTH-TOKEN');
-      TokenStorage.store(headers('X-AUTH-TOKEN'));
-      data.headers = headers();
-      console.log(headers());
-      return data;
+    return this.$http.post("" + urlBase, data).success(function(result) {
+      TokenStorage.store(result);
+      return TokenStorage;
     });
   };
 

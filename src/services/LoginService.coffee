@@ -4,12 +4,8 @@ class LoginService
   constructor: (@$http, @TokenStorage) ->
 
   login: (data) ->
-    @$http.post("#{urlBase}", data).success (result, status, headers) ->
-      data.autenticado = true
-      data.token = headers('X-AUTH-TOKEN')
-      TokenStorage.store(headers('X-AUTH-TOKEN'))
-      data.headers = headers()
-      console.log headers()
-      return data
+    @$http.post("#{urlBase}", data).success (result) ->
+      TokenStorage.store(result)
+      return TokenStorage
 
 angular.module('sincap').service 'LoginService', ['$http', 'TokenStorage', LoginService]
