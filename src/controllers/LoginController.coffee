@@ -1,26 +1,8 @@
 class LoginController
-  constructor: (@$scope, @loginService) ->
+  constructor: (@$scope, @$location, @loginService) ->
 
     @$scope.login = (dados) =>
       @loginService.login(dados).success (results) ->
-#        alert(results)
-#    @$scope.loginData = {}
-#
-#    @$ionicModal.fromTemplateUrl('templates/login.html', scope: $scope)
-#    .then (modal) ->
-#      $scope.modal = modal
-#
-#  closeLogin: ->
-#    @$scope.modal.hide()
-#data
-#  login: ->
-#    @$scope.modal.show()
-#
-#  doLogin: ->
-#    console.log 'Doing login', @$scope.loginData
-#
-#    @$timeout ->
-#      @$scope.closeLogin()
-#    , 1000
+        
 
-angular.module('sincap').controller 'LoginCtrl', ['$scope', 'LoginService', LoginController]
+angular.module('sincap').controller 'LoginCtrl', ['$scope', '$location', 'LoginService', LoginController]

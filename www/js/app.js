@@ -747,8 +747,9 @@ angular.module('sincap').controller('CaptacaoCtrl', ['$scope', 'CaptacaoService'
 var LoginController;
 
 LoginController = (function() {
-  function LoginController($scope, loginService) {
+  function LoginController($scope, $location, loginService) {
     this.$scope = $scope;
+    this.$location = $location;
     this.loginService = loginService;
     this.$scope.login = (function(_this) {
       return function(dados) {
@@ -761,7 +762,7 @@ LoginController = (function() {
 
 })();
 
-angular.module('sincap').controller('LoginCtrl', ['$scope', 'LoginService', LoginController]);
+angular.module('sincap').controller('LoginCtrl', ['$scope', '$location', 'LoginService', LoginController]);
 
 var TokenAuthInterceptor;
 
@@ -837,9 +838,11 @@ LoginService = (function() {
 
   urlBase = 'http://127.0.0.1:8080/msincap/api/login';
 
-  function LoginService($http, TokenStorage) {
+  function LoginService($http, $location, TokenStorage) {
     this.$http = $http;
+    this.$location = $location;
     this.TokenStorage = TokenStorage;
+    this.logoff = bind(this.logoff, this);
     this.login = bind(this.login, this);
   }
 
@@ -847,13 +850,17 @@ LoginService = (function() {
     return this.$http.post("" + urlBase, data).success((function(_this) {
       return function(result) {
         _this.TokenStorage.store(result);
-        return _this.TokenStorage;
+        return _this.$location.path('app/captacoes');
       };
     })(this));
+  };
+
+  LoginService.prototype.logoff = function() {
+    return this.TokenStorage.clear();
   };
 
   return LoginService;
 
 })();
 
-angular.module('sincap').service('LoginService', ['$http', 'TokenStorage', LoginService]);
+angular.module('sincap').service('LoginService', ['$http', '$location', 'TokenStorage', LoginService]);
