@@ -810,16 +810,18 @@ angular.module('sincap').factory('TokenStorage', [TokenStorage]);
 var CaptacaoService;
 
 CaptacaoService = (function() {
-  var urlBase;
+  var captacoesRealizar, urlBase;
 
-  urlBase = 'http://127.0.0.1:8080/msincap/captacao?bancoolhos.id=2';
+  urlBase = 'http://127.0.0.1:8080/msincap/captacao';
+
+  captacoesRealizar = '?estado=AGUARDANDOCAPTACAO';
 
   function CaptacaoService($http) {
     this.$http = $http;
   }
 
   CaptacaoService.prototype.get = function() {
-    return this.$http.get(urlBase).then(function(results) {
+    return this.$http.get(urlBase + captacoesRealizar).then(function(results) {
       return results.data;
     });
   };
