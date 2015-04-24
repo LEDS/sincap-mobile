@@ -11,7 +11,7 @@ class LoginService
       
 
 
-  logoff: =>
+  logoff: () =>
     @TokenStorage.clear()
     #$scope.authenticated = false
 
