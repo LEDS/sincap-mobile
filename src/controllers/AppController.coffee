@@ -1,4 +1,11 @@
 class AppController
-  constructor: (@$scope, @$auth) ->
+  constructor: (@$scope, @CaptacaoService) ->
+    REALIZAR = 'AGUARDANDOCAPTACAO'
+    CORRIGIR =  'AGUARDANDOCORRECAOCAPTACACAO'
 
-angular.module('sincap').controller 'AppCtrl', ['$scope', AppController]
+    @CaptacaoService.quantCaptacoesRealizar(REALIZAR).then (results) =>
+      @$scope.quantCaptacoesRealizar = results
+    @CaptacaoService.quantCaptacoesRealizar(CORRIGIR).then (results) =>
+      @$scope.quantCaptacoesCorrigir = results
+
+angular.module('sincap').controller 'AppCtrl', ['$scope', 'CaptacaoService', AppController]

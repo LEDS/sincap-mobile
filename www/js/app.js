@@ -690,14 +690,6 @@ angular.module('sincap').config(function($stateProvider, $urlRouterProvider) {
         controller: 'CaptacaoCtrl'
       }
     }
-  }).state('app.correcoes', {
-    url: "/correcoes",
-    views: {
-      'menuContent': {
-        templateUrl: "templates/captacao.html",
-        controller: 'CaptacaoCtrl'
-      }
-    }
   }).state('app.single', {
     url: "/captacoes/:processoId",
     views: {
@@ -721,16 +713,29 @@ angular.module('sincap').config(function($stateProvider, $urlRouterProvider) {
 var AppController;
 
 AppController = (function() {
-  function AppController($scope, $auth) {
+  function AppController($scope, CaptacaoService) {
+    var CORRIGIR, REALIZAR;
     this.$scope = $scope;
-    this.$auth = $auth;
+    this.CaptacaoService = CaptacaoService;
+    REALIZAR = 'AGUARDANDOCAPTACAO';
+    CORRIGIR = 'AGUARDANDOCORRECAOCAPTACACAO';
+    this.CaptacaoService.quantCaptacoesRealizar(REALIZAR).then((function(_this) {
+      return function(results) {
+        return _this.$scope.quantCaptacoesRealizar = results;
+      };
+    })(this));
+    this.CaptacaoService.quantCaptacoesRealizar(CORRIGIR).then((function(_this) {
+      return function(results) {
+        return _this.$scope.quantCaptacoesCorrigir = results;
+      };
+    })(this));
   }
 
   return AppController;
 
 })();
 
-angular.module('sincap').controller('AppCtrl', ['$scope', AppController]);
+angular.module('sincap').controller('AppCtrl', ['$scope', 'CaptacaoService', AppController]);
 
 var CaptacaoController;
 
@@ -821,16 +826,22 @@ angular.module('sincap').factory('TokenStorage', [TokenStorage]);
 var CaptacaoService;
 
 CaptacaoService = (function() {
-  var urlBase;
+  var URLBASE;
 
-  urlBase = 'http://127.0.0.1:8080/msincap/captacao';
+  URLBASE = 'http://127.0.0.1:8080/msincap/captacao';
 
   function CaptacaoService($http) {
     this.$http = $http;
   }
 
   CaptacaoService.prototype.captacaoPorTipo = function(queryString) {
-    return this.$http.get(urlBase + '?estado=' + queryString).then(function(results) {
+    return this.$http.get(URLBASE + '?estado=' + queryString).then(function(results) {
+      return results.data;
+    });
+  };
+
+  CaptacaoService.prototype.quantCaptacoesRealizar = function(estado) {
+    return this.$http.get(URLBASE + '/quantidade' + '?estado=' + estado).then(function(results) {
       return results.data;
     });
   };

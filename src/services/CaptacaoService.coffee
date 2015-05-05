@@ -1,16 +1,13 @@
 class CaptacaoService
-  urlBase = 'http://127.0.0.1:8080/msincap/captacao'
-  #captacoesRealizar = '?estado=AGUARDANDOCAPTACAO'
+  URLBASE = 'http://127.0.0.1:8080/msincap/captacao'
+
   constructor: (@$http) ->
   captacaoPorTipo: (queryString) ->
-    @$http.get(urlBase + '?estado=' + queryString).then (results) ->
+    @$http.get(URLBASE + '?estado=' + queryString).then (results) ->
       results.data
 
-  #quantCaptacoesRealizar: () ->
-    #@$http.get()
-
-
-
-
+  quantCaptacoesRealizar: (estado) ->
+    @$http.get(URLBASE + '/quantidade' + '?estado=' + estado).then (results) ->
+      results.data
 
 angular.module('sincap').service 'CaptacaoService', ['$http', CaptacaoService]
