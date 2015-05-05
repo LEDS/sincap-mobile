@@ -1,5 +1,6 @@
 class LoginService
   urlBase = 'http://127.0.0.1:8080/msincap/api/login'
+  nextStep = 'app/captacoes/AGUARDANDOCAPTACAO'
 
   constructor: (@$http, @$location, @TokenStorage) ->
 
@@ -7,9 +8,8 @@ class LoginService
     @$http.post("#{urlBase}", data).success (result) =>
       #@$scope.authenticated = true
       @TokenStorage.store(result)
-      @$location.path('app/captacoes')
-      
-
+      @$location.path(nextStep)
+      #@$location.search('estado', 'AGUARDANDOCAPTACAO')
 
   logoff: () =>
     @TokenStorage.clear()

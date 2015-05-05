@@ -683,7 +683,15 @@ angular.module('sincap').config(function($stateProvider, $urlRouterProvider) {
       }
     }
   }).state('app.captacoes', {
-    url: "/captacoes",
+    url: "/captacoes/:estado",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/captacao.html",
+        controller: 'CaptacaoCtrl'
+      }
+    }
+  }).state('app.correcoes', {
+    url: "/correcoes",
     views: {
       'menuContent': {
         templateUrl: "templates/captacao.html",
@@ -727,11 +735,14 @@ angular.module('sincap').controller('AppCtrl', ['$scope', AppController]);
 var CaptacaoController;
 
 CaptacaoController = (function() {
-  function CaptacaoController($scope, captacaoService) {
+  function CaptacaoController($scope, $stateParams, captacaoService) {
     this.$scope = $scope;
+    this.$stateParams = $stateParams;
     this.captacaoService = captacaoService;
-    this.captacaoService.get().then((function(_this) {
+    this.$scope.estado = this.$stateParams.estado;
+    this.captacaoService.captacaoPorTipo(this.$scope.estado).then((function(_this) {
       return function(results) {
+        _this.$scope.processos = {};
         return _this.$scope.processos = results;
       };
     })(this));
@@ -742,7 +753,7 @@ CaptacaoController = (function() {
 
 })();
 
-angular.module('sincap').controller('CaptacaoCtrl', ['$scope', 'CaptacaoService', CaptacaoController]);
+angular.module('sincap').controller('CaptacaoCtrl', ['$scope', '$stateParams', 'CaptacaoService', CaptacaoController]);
 
 var LoginController;
 
@@ -810,18 +821,16 @@ angular.module('sincap').factory('TokenStorage', [TokenStorage]);
 var CaptacaoService;
 
 CaptacaoService = (function() {
-  var captacoesRealizar, urlBase;
+  var urlBase;
 
   urlBase = 'http://127.0.0.1:8080/msincap/captacao';
-
-  captacoesRealizar = '?estado=AGUARDANDOCAPTACAO';
 
   function CaptacaoService($http) {
     this.$http = $http;
   }
 
-  CaptacaoService.prototype.get = function() {
-    return this.$http.get(urlBase + captacoesRealizar).then(function(results) {
+  CaptacaoService.prototype.captacaoPorTipo = function(queryString) {
+    return this.$http.get(urlBase + '?estado=' + queryString).then(function(results) {
       return results.data;
     });
   };
@@ -836,9 +845,11 @@ var LoginService,
   bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
 LoginService = (function() {
-  var urlBase;
+  var nextStep, urlBase;
 
   urlBase = 'http://127.0.0.1:8080/msincap/api/login';
+
+  nextStep = 'app/captacoes/AGUARDANDOCAPTACAO';
 
   function LoginService($http, $location, TokenStorage) {
     this.$http = $http;
@@ -852,7 +863,7 @@ LoginService = (function() {
     return this.$http.post("" + urlBase, data).success((function(_this) {
       return function(result) {
         _this.TokenStorage.store(result);
-        return _this.$location.path('app/captacoes');
+        return _this.$location.path(nextStep);
       };
     })(this));
   };

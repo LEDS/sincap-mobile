@@ -14,7 +14,14 @@ angular.module 'sincap'
         templateUrl: "templates/search.html"
 
   .state 'app.captacoes',
-    url: "/captacoes"
+    url: "/captacoes/:estado"
+    views:
+      'menuContent':
+        templateUrl: "templates/captacao.html"
+        controller: 'CaptacaoCtrl'
+
+  .state 'app.correcoes',
+    url: "/correcoes"
     views:
       'menuContent':
         templateUrl: "templates/captacao.html"
