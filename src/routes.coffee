@@ -19,13 +19,6 @@ angular.module 'sincap'
       'menuContent':
         templateUrl: "templates/captacao.html"
         controller: 'CaptacaoCtrl'
-
-  .state 'app.correcoes',
-    url: "/correcoes"
-    views:
-      'menuContent':
-        templateUrl: "templates/captacao.html"
-        controller: 'CaptacaoCtrl'
   
   .state 'app.single',
     url: "/captacoes/:processoId"
