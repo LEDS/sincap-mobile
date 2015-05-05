@@ -9,7 +9,6 @@ class LoginService
       #@$scope.authenticated = true
       @TokenStorage.store(result)
       @$location.path(nextStep)
-      #@$location.search('estado', 'AGUARDANDOCAPTACAO')
 
   logoff: () =>
     @TokenStorage.clear()
