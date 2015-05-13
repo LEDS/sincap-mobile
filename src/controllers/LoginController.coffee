@@ -3,6 +3,6 @@ class LoginController
 
     @$scope.login = (dados) =>
       @loginService.login(dados).success (results) ->
-        
+
 
 angular.module('sincap').controller 'LoginCtrl', ['$scope', '$location', 'LoginService', LoginController]
