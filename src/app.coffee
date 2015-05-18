@@ -1,4 +1,4 @@
-angular.module 'sincap', ['ionic']
+angular.module 'sincap', ['ionic', 'ui.mask']
 
 .config(($httpProvider) ->
   $httpProvider.interceptors.push('TokenAuthInterceptor')
