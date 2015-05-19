@@ -6,6 +6,10 @@ class CaptacaoService
     @$http.get(URLBASE + '?estado=' + queryString).then (results) ->
       results.data
 
+  captacaoPorId: (queryString) ->
+    @$http.get(URLBASE+ '/obter'+ '?id=' + queryString).then (results) ->
+      results.data
+
   quantCaptacoesRealizar: (estado) ->
     @$http.get(URLBASE + '/quantidade' + '?estado=' + estado).then (results) ->
       results.data

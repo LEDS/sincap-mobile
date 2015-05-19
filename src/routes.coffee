@@ -20,12 +20,12 @@ angular.module 'sincap'
         templateUrl: "templates/captacao.html"
         controller: 'CaptacaoCtrl'
 
-  .state 'app.single',
-    url: "/captacoes/:processoId"
+  .state 'app.editarCaptacao',
+    url: "/captacoes/realizar/:id"
     views:
       'menuContent':
         templateUrl: "templates/form.html"
-        controller: 'CaptacaoCtrl'
+        controller: 'RealizarCaptacaoCtrl'
 
   .state 'app.login',
     url: "/login"

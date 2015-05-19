@@ -3,23 +3,23 @@
 	<div class="list">
 		<label class="item item-input item-stacked-label">
 		    <span class="input-label">Nome</span>
-			<input type="text" readonly="true" placeholder="">
+			<input type="text" value="{{processo.obito.paciente.nome}}" readonly="true" placeholder="">
 		</label>
 		<label class="item item-input item-stacked-label">
 			<span class="input-label">Protocolo</span>
-			<input type="text" readonly="true" placeholder="">
+			<input type="text" value="{{processo.codigo}}" readonly="true" placeholder="">
 		</label>
 
 		<label class="item">
 		Córneas captadas:*
 			<ul class="list">
 				<label class="item item-radio ">
-					<input type="radio" name="group">
+					<input type="radio" value="true" ng-model="captacao.realizada" name="group">
 					<div class="item-content">Sim</div>
 					<i class="radio-icon ion-checkmark"></i>
 				</label>
 				<label class="item item-radio">
-					<input type="radio" name="group">
+					<input type="radio" value="false" ng-model="captacao.realizada" name="group">
 					<div class="item-content">Não</div>
 					<i class="radio-icon ion-checkmark"></i>
 				</label>
@@ -27,18 +27,21 @@
 		</label>
 
 		<label class="item item-input item-stacked-label">
-			<span class="input-label">Data da captação*</span>
+			<span class="input-label" ng-model="captacao.data">Data da captação*</span>
 			<input type="date">
 		</label>
 		<label class="item item-input item-stacked-label">
-			<span class="date close-right">Hora da captação*</span>
+			<span class="date close-right" ng-model="captacao.hora">Hora da captação*</span>
 			<input type="text" placeholder="">
 		</label>
 		<label class="item item-input item-stacked-label">
-			<span class="input-label">Comments</span>
+			<span class="input-label" ng-model="captacao.comentario">Comments</span>
 			<textarea placeholder=""></textarea>
 		</label>
 	</div>
+        <button class="button button-positive" type="button" ng-click="enviar()">
+          Enviar
+        </button>
   </ion-content>
 </ion-view>
 
