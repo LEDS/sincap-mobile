@@ -23,10 +23,10 @@ gulp.task('lint', function () {
     .pipe(coffeelint.reporter())
 });
 
-gulp.task('coffee', ['lint'], function () {
+gulp.task('coffee', function () {
   return gulp.src(paths.coffee)
     .pipe(sourcemaps.init())
-      .pipe(coffee()).on('error', gutil.log)
+      .pipe(coffee())
       .pipe(concat('app.js'))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('./www/js'));
