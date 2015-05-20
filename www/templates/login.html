@@ -7,7 +7,7 @@
       <div class="list list-inset">
         <form id="loginForm">
           <label class="item item-input">
-              <input type="text" ng-required="true" ui-mask="999.999.999-99" ng-model="data.username">
+              <input id="username" type="text" ng-required="true" ui-mask="{{mask}}" placeholder="{{placeholder}}" ng-focus="focus()" ng-blur="nofocus()" ng-model="data.username">
           </label>
           <label class="item item-input">
               <input type="password" ng-required="true" placeholder="Senha" ng-model="data.password">
