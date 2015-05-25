@@ -25,7 +25,7 @@ angular.module 'sincap'
     views:
       'menuContent':
         templateUrl: "templates/form.html"
-        controller: 'RealizarCaptacaoCtrl'
+        controller: 'RealizarCaptacaoCtrl as ctrl'
 
   .state 'app.login',
     url: "/login"

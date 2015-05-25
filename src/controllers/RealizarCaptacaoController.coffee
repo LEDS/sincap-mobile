@@ -1,13 +1,14 @@
 class RealizarCaptacaoController
-  constructor: (@scope, @stateParams, @captacaoService) ->
+  constructor: (@stateParams, @captacaoService) ->
     idProcesso = @stateParams.id
-    @scope.captacao = {}
+    @processo = {}
+    @captacao = {}
 
-    @captacaoService.captacaoPorId(idProcesso).then (results) =>
-      @scope.processo = results
+    @captacaoService.captacaoPorId(idProcesso).then (result) =>
+      @processo = result
 
-    @scope.enviar = () =>
-      console.log @scope.captacao
+  enviar: ->
+    console.log @captacao
 
-angular.module('sincap').controller 'RealizarCaptacaoCtrl', ['$scope', '$stateParams', 'CaptacaoService',
+angular.module('sincap').controller 'RealizarCaptacaoCtrl', ['$stateParams', 'CaptacaoService',
                                                              RealizarCaptacaoController]

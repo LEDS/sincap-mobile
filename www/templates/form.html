@@ -3,23 +3,23 @@
 	<div class="list">
 		<label class="item item-input item-stacked-label">
 		    <span class="input-label">Nome</span>
-			<input type="text" value="{{processo.obito.paciente.nome}}" readonly="true" placeholder="">
+			<input type="text" value="{{ctrl.processo.obito.paciente.nome}}" readonly="true" placeholder="">
 		</label>
 		<label class="item item-input item-stacked-label">
 			<span class="input-label">Protocolo</span>
-			<input type="text" value="{{processo.codigo}}" readonly="true" placeholder="">
+			<input type="text" value="{{ctrl.processo.codigo}}" readonly="true" placeholder="">
 		</label>
 
 		<label class="item">
 		Córneas captadas:*
 			<ul class="list">
 				<label class="item item-radio ">
-					<input type="radio" value="true" ng-model="captacao.realizada" name="group">
+					<input type="radio" value="true" ng-model="ctrl.captacao.realizada" name="group">
 					<div class="item-content">Sim</div>
 					<i class="radio-icon ion-checkmark"></i>
 				</label>
 				<label class="item item-radio">
-					<input type="radio" value="false" ng-model="captacao.realizada" name="group">
+					<input type="radio" value="false" ng-model="ctrl.captacao.realizada" name="group">
 					<div class="item-content">Não</div>
 					<i class="radio-icon ion-checkmark"></i>
 				</label>
@@ -27,21 +27,20 @@
 		</label>
 
 		<label class="item item-input item-stacked-label">
-			<span class="input-label" ng-model="captacao.data">Data da captação*</span>
-			<input type="date">
+			<span class="input-label">Data da captação*</span>
+			<input type="date" ng-model="ctrl.captacao.data">
 		</label>
 		<label class="item item-input item-stacked-label">
-			<span class="date close-right" ng-model="captacao.hora">Hora da captação*</span>
-			<input type="text" placeholder="">
+			<span class="date close-right">Hora da captação*</span>
+			<input type="text" placeholder="" ng-model="ctrl.captacao.hora">
 		</label>
 		<label class="item item-input item-stacked-label">
-			<span class="input-label" ng-model="captacao.comentario">Comments</span>
-			<textarea placeholder=""></textarea>
+			<span class="input-label">Comentários</span>
+			<textarea placeholder="" ng-model="ctrl.captacao.comentario"></textarea>
 		</label>
 	</div>
-        <button class="button button-block button-positive" type="button" ng-click="enviar()">
+        <button class="button button-block button-positive" type="button" ng-click="ctrl.enviar()">
           Enviar
         </button>
   </ion-content>
 </ion-view>
-
