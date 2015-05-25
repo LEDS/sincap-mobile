@@ -20,7 +20,7 @@ gulp.task('default', ['sass', 'coffee']);
 gulp.task('lint', function () {
   return gulp.src('./src/**/*.coffee')
     .pipe(coffeelint('coffeelint.json'))
-    .pipe(coffeelint.reporter())
+    .pipe(coffeelint.reporter());
 });
 
 gulp.task('coffee', function () {
