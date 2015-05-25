@@ -19,19 +19,19 @@ angular.module 'sincap'
       'menuContent':
         templateUrl: "templates/captacao.html"
         controller: 'CaptacaoCtrl'
-  
+
   .state 'app.single',
     url: "/captacoes/:processoId"
     views:
       'menuContent':
         templateUrl: "templates/form.html"
         controller: 'CaptacaoCtrl'
-        
+
   .state 'app.login',
     url: "/login"
     views:
       'menuContent':
         templateUrl: "templates/login.html"
-        controller: 'LoginCtrl'
+        controller: 'LoginCtrl as ctrl'
 
   $urlRouterProvider.otherwise '/app/login'

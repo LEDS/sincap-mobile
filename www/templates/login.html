@@ -7,14 +7,14 @@
       <div class="list list-inset">
         <form id="loginForm">
           <label class="item item-input">
-              <input id="username" type="text" ng-required="true" ui-mask="{{mask}}" placeholder="{{placeholder}}" ng-focus="focus()" ng-blur="nofocus()" ng-model="data.username">
+              <input id="username" type="text" ng-required="true" ui-mask="999.999.999-99" ng-model="ctrl.data.username" ui-mask="999.999.999-99">
           </label>
           <label class="item item-input">
-              <input type="password" ng-required="true" placeholder="Senha" ng-model="data.password">
+              <input type="password" ng-required="true" placeholder="Senha" ng-model="ctrl.data.password">
           </label>
         </form>
       </div>
-      <button class="button button-block button-positive" ng-click="login(data)" type="button" >Entrar</button>
+      <button class="button button-block button-positive" ng-click="ctrl.login(ctrl.data)" type="button" >Entrar</button>
     </div>
   </ion-content>
 </ion-view>

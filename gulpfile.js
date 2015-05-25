@@ -44,7 +44,7 @@ gulp.task('sass', function(done) {
     .on('end', done);
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', ['coffee'], function() {
   gulp.watch(paths.sass, ['sass']);
   gulp.watch(paths.coffee, ['coffee']);
 });
