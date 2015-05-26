@@ -1,11 +1,10 @@
 class CaptacaoController
-  constructor: (@$scope, @$stateParams, @captacaoService) ->
-    @$scope.estado = @$stateParams.estado
+  constructor: (@stateParams, @captacaoService) ->
+    @estado = @stateParams.estado
 
-    @captacaoService.captacaoPorTipo(@$scope.estado).then (results) =>
-      @$scope.processos = {}
-      @$scope.processos = results
+    @captacaoService.captacaoPorTipo(@estado).then (results) =>
+      @processos = results
 
-    @$scope.title = 'Captações'
+    @title = 'Captações'
 
-angular.module('sincap').controller 'CaptacaoCtrl', ['$scope', '$stateParams', 'CaptacaoService', CaptacaoController]
+angular.module('sincap').controller 'CaptacaoCtrl', ['$stateParams', 'CaptacaoService', CaptacaoController]

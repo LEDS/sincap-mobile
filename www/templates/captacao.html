@@ -1,4 +1,4 @@
-<ion-view can-swipe-back="false" hide-nav-bar="true" hide-back-button="true" view-title="Captação">
+<ion-view can-swipe-back="false" hide-back-button="true" view-title="{{captacao.title}}">
   <ion-header-bar align-title="center" class="bar-stable bar bar-header disable-user-behavior">
     <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
     <div class="h1 title">Captação</div>
@@ -8,7 +8,7 @@
   </ion-header-bar>
   <ion-content>
     <ion-list>
-      <ion-item ng-repeat="p in processos" href="#/app/captacoes/realizar/{{p.id}}">
+      <ion-item ng-repeat="p in captacao.processos" href="#/app/captacoes/realizar/{{p.id}}">
         <h2>Prontuário: {{ p.obito.paciente.numeroProntuario }}</h2>
         <p>Nome: {{ p.obito.paciente.nome }}</p>
         <p>Hospital: {{ p.obito.hospital.nome }}</p>

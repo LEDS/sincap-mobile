@@ -2,36 +2,36 @@ angular.module 'sincap'
 .config ($stateProvider, $urlRouterProvider) ->
   $stateProvider
   .state 'app',
-    url: "/app"
+    url: '/app'
     abstract: true
-    templateUrl: "templates/menu.html"
+    templateUrl: 'templates/menu.html'
     controller: 'AppCtrl'
 
   .state 'app.search',
-    url: "/search"
+    url: '/search'
     views:
       'menuContent':
-        templateUrl: "templates/search.html"
+        templateUrl: 'templates/search.html'
 
   .state 'app.captacoes',
-    url: "/captacoes/:estado"
+    url: '/captacoes/:estado'
     views:
       'menuContent':
-        templateUrl: "templates/captacao.html"
-        controller: 'CaptacaoCtrl'
+        templateUrl: 'templates/captacao.html'
+        controller: 'CaptacaoCtrl as captacao'
 
   .state 'app.editarCaptacao',
-    url: "/captacoes/realizar/:id"
+    url: '/captacoes/realizar/:id'
     views:
       'menuContent':
-        templateUrl: "templates/form.html"
+        templateUrl: 'templates/form.html'
         controller: 'RealizarCaptacaoCtrl as ctrl'
 
   .state 'app.login',
-    url: "/login"
+    url: '/login'
     views:
       'menuContent':
-        templateUrl: "templates/login.html"
+        templateUrl: 'templates/login.html'
         controller: 'LoginCtrl as ctrl'
 
-  $urlRouterProvider.otherwise '/app/login'
+  $urlRouterProvider.otherwise '/app/captacoes/AGUARDANDOCAPTACAO'
