@@ -1,4 +1,4 @@
-<ion-view hide-nav-bar="true" view-title="SincAPP" name="login-view">
+<ion-modal-view>
   <div class="bar">
     <h1 class="title">SincApp</h1>
   </div>
@@ -7,14 +7,14 @@
       <div class="list list-inset">
         <form id="loginForm">
           <label class="item item-input">
-              <input id="username" type="text" ng-required="true" ui-mask="999.999.999-99" ng-model="ctrl.data.username" ui-mask="999.999.999-99">
+              <input id="username" type="text" ng-required="true" ui-mask="999.999.999-99" ng-model="captacao.dadosLogin.username">
           </label>
           <label class="item item-input">
-              <input type="password" ng-required="true" placeholder="Senha" ng-model="ctrl.data.password">
+              <input type="password" ng-required="true" placeholder="Senha" ng-model="captacao.dadosLogin.password">
           </label>
         </form>
       </div>
-      <button class="button button-block button-positive" ng-click="ctrl.login(ctrl.data)" type="button" >Entrar</button>
+      <button class="button button-block button-positive" ng-click="captacao.login()" type="button" >Entrar</button>
     </div>
   </ion-content>
-</ion-view>
+</ion-modal-view>

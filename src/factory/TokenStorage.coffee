@@ -1,16 +1,19 @@
-TokenStorage = () ->
+TokenStorage = ->
   storageKey = ''
-  
-  {
+  authenticated = no
+
   store: (token) ->
     localStorage.setItem(storageKey, token)
+    authenticated = yes
 
-  retrieve: () ->
+  retrieve: ->
     localStorage.getItem(storageKey)
 
-  clear : () ->
+  clear: ->
+    authenticated = no
     localStorage.removeItem(storageKey)
-  }
-  
+
+  isAuthenticated: ->
+    authenticated
 
 angular.module('sincap').factory 'TokenStorage', [TokenStorage]
