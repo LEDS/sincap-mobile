@@ -15,7 +15,7 @@ var paths = {
   coffee: ['./src/**/*.coffee']
 };
 
-gulp.task('default', ['sass', 'coffee']);
+gulp.task('default', ['sass', 'watch']);
 
 gulp.task('lint', function () {
   return gulp.src('./src/**/*.coffee')
