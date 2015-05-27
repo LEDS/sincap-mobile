@@ -1,6 +1,7 @@
 class CaptacaoController
   constructor: (@scope, @stateParams, @ionicModal, @tokenStorage, @loginService, @captacaoService) ->
     @estado = @stateParams.estado
+    @title = 'Captações'
 
     if not @tokenStorage.isAuthenticated()
       @ionicModal.fromTemplateUrl 'templates/login.html',
@@ -9,10 +10,12 @@ class CaptacaoController
         @modal = modal
         modal.show()
 
+    @listarCaptacoesPorEstado(@estado)
+
+
+  listarCaptacoesPorEstado: ->
     @captacaoService.captacaoPorTipo(@estado).then (results) =>
       @processos = results
-
-    @title = 'Captações'
 
   login: ->
     @dadosLogin.username = @formataCPF @dadosLogin.username
